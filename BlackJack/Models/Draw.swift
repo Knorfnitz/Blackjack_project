@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Draw {
+struct Draw: Codable {
     
     var success: Bool
-    var deckId: String
+    var deck_id: String
     var cards: [Card]
-    var remining: Int
+    var remaining: Int
     
  
     

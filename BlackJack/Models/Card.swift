@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Card {
-    
+struct Card: Codable {
+   
     var code: String
     var image: String
-    var value: Int
-    var suit: Int
+    var value: String
+    var suit: String
     
 }

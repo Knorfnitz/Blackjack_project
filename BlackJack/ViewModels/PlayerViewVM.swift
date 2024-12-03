@@ -8,7 +8,7 @@
 import Foundation
 
 class PlayerViewVM: ObservableObject {
-    @Published var player: Player = Player(name: "", gameHistory: [], coins: 0, email: "", password: "")
+    @Published var player: Player = Player(name: "Player 1", gameHistory: [], coins: 1000, email: "", password: "")
     
    
     
