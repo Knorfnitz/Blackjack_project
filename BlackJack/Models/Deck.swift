@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct Deck {
+    
+    var success: Bool
+    var deckId: String
+    var shuffled: Bool
+    var remaining: Int
+    
+}

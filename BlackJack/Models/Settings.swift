@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Setting {
+    
+    var darkMode: Bool
+    var howMuchDecks: Int
+    var everyTurnNewDeck: Bool
+    
+}

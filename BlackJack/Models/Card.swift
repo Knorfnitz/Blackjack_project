@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct Card {
+    
+    var code: String
+    var image: String
+    var value: Int
+    var suit: Int
+    
+}

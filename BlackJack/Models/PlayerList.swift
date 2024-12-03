@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct PlayerList {
+    
+    var players: [Player] = []
+    
+}
