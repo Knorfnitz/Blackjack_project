@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct Deck {
+struct Deck: Codable {
     
     var success: Bool
     var deckId: String
     var shuffled: Bool
     var remaining: Int
+    
     
 }

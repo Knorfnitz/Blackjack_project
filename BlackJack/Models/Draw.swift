@@ -14,4 +14,6 @@ struct Draw {
     var cards: [Card]
     var remining: Int
     
+ 
+    
 }

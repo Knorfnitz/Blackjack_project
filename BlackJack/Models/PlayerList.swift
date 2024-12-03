@@ -9,6 +9,6 @@ import Foundation
 
 struct PlayerList {
     
-    var players: [Player] = []
+    var players: [Player] = [Player(name: "Player1", gameHistory: [], coins: 1000, email: "player1@gmx.de", password: "qwertz")]
     
 }

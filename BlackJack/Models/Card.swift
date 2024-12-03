@@ -14,4 +14,5 @@ struct Card {
     var value: Int
     var suit: Int
     
+
 }

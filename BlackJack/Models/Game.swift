@@ -12,10 +12,13 @@ struct Game {
     var gameId: UUID = UUID()
     var bet: Int
     var player: Player
+    var deck: Deck
     var dealerCards: [Card]
     var playerCards: [Card]
+    var draw: Draw
     var oldCoinAmount: Int
     var newCoinAmount: Int
     var isGameActive: Bool
     
+
 }
