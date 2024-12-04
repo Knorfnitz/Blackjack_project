@@ -94,7 +94,7 @@ struct StepperView: View {
                 }
             }
         }
-        .padding()
+        //.padding()
     }
 }
 

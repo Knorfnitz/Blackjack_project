@@ -15,7 +15,7 @@ struct GameHeader: View {
                 .font(.title)
                 .foregroundStyle(.white)
             Spacer()
-            Text("\(gameViewVM.player.coins)")
+            Text("\(gameViewVM.player.coins) ₿")
                 .font(.title)
                 .foregroundStyle(.white)
             

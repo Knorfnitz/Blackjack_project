@@ -47,7 +47,9 @@ struct GameRoundView: View {
             .frame(height: 120)
             .padding(.horizontal, 20)
             Text("\(dealerCardsValue)")
-                .padding(.bottom, 40)
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.bottom, 30)
             
             
             ZStack {
@@ -94,8 +96,10 @@ struct GameRoundView: View {
             .frame(height: 120)
             .padding(.horizontal, 20)
             
-            Spacer()
+         //   Spacer()
             Text("\(playerCardsValue)")
+                .font(.title)
+                .fontWeight(.bold)
             
             if !youLose {
 

@@ -12,6 +12,10 @@ struct PlayerTurnButtons: View {
     @Binding var dealerCardsValue: Int
     @Binding var playerCardsValue: Int
     @Binding var youLose: Bool
+    @Binding var youWin: Bool
+    @Binding var youDraw: Bool
+    
+    @Binding var isTurnActive: Bool
  
     var body: some View {
         HStack{
@@ -53,8 +57,21 @@ struct PlayerTurnButtons: View {
                         gameViewVM.deck.remaining = gameViewVM.draw.remaining
                         
                         dealerCardsValue = gameViewVM.calculateCardsValue(cards: gameViewVM.dealerCards)
-                        sleep(1)
+                        sleep(2)
                     }
+                    if dealerCardsValue > 21 || playerCardsValue > dealerCardsValue{
+                        youWin = true
+                        isTurnActive = false
+                    }else{
+                        if playerCardsValue == dealerCardsValue{
+                            youDraw = true
+                            isTurnActive = false
+                        }else{
+                            youLose = true
+                            isTurnActive = false
+                        }
+                    }
+                    
                 }
                 
             }){
@@ -72,5 +89,5 @@ struct PlayerTurnButtons: View {
 }
 
 #Preview {
-    PlayerTurnButtons(gameViewVM: GameViewVM(repository: CardsRepository()), dealerCardsValue: .constant(0), playerCardsValue: .constant(0), youLose: .constant(false))
+    PlayerTurnButtons(gameViewVM: GameViewVM(repository: CardsRepository()), dealerCardsValue: .constant(0), playerCardsValue: .constant(0), youLose: .constant(false), youWin: .constant(false), youDraw: .constant(false), isTurnActive: .constant(true))
 }
