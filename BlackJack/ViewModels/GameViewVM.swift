@@ -39,7 +39,34 @@ class GameViewVM: ObservableObject {
               print("Cant draw card: \(error)")
           }
       }
-    func checkMultipleUser() {
-        //schauen ob die Mail schon vorhanden ist
+    
+    func calculateCardsValue(cards: [Card]) -> Int {
+        var total: Int = 0
+        var aceCount: Int = 0
+        for card in cards {
+                switch card.value {
+                case "JACK", "QUEEN", "KING":
+                    total += 10
+                case "ACE":
+                    total += 11
+                    aceCount += 1
+                default:
+                    if let numberValue = Int(card.value) {
+                        total += numberValue
+                    }
+                  
+                }
+            }
+        while total > 21 && aceCount > 0 {
+            total -= 10
+            aceCount -= 1
+        }
+     
+        return total
     }
+    
+    func checkAces(cards: [Card]){
+        
+    }
+    
 }
