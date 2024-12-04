@@ -10,7 +10,7 @@ import Foundation
 struct Deck: Codable {
     
     var success: Bool
-    var deckId: String
+    var deck_id: String
     var shuffled: Bool
     var remaining: Int
     
