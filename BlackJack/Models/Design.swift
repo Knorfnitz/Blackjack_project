@@ -30,6 +30,14 @@ struct Design {
     var fontSize: CGFloat = 16
     
 }
+struct BlackjackTheme {
+    static let backgroundColor = Color.black
+    static let textColor = Color.white
+    static let highlightColor = Color.green
+    static let highlightColor1 = Color.yellow.opacity(0.8)
+    static let cardBackColor = Color.gray
+}
+
 
 struct ScreenBackgroundColor: View {
     var body: some View {
