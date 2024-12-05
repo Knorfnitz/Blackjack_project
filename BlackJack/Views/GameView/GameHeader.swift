@@ -13,14 +13,30 @@ struct GameHeader: View {
     @ObservedObject var playViewVM: PlayerViewVM
     
     var body: some View {
-        HStack{
-            Text(playViewVM.name)
-                .font(.title)
-                .foregroundStyle(.white)
-            Spacer()
-            Text("\(playViewVM.coins) ₿")
-                .font(.title)
-                .foregroundStyle(.white)
+        ZStack{
+            HStack{
+                Image("NameBackground")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 170)
+Spacer()
+                Image("NameBackground")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 170)
+            }
+            //.padding(.horizontal)
+            HStack(){
+                Text(playViewVM.name)
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                    .frame(width: 170,alignment: .center)
+                Spacer()
+                Text("\(playViewVM.coins) ₿")
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                    .frame(width: 170,alignment: .center)
+            }
             
         }
     }

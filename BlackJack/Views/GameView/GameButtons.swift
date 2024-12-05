@@ -20,6 +20,8 @@ struct GameButtons: View {
     @Binding var dealerCardsValue: Int
     @Binding var animationOpacity: Double
     @Binding var animationScale: CGFloat
+    
+    @Binding var activeView: String?
 
     @Binding var showBetView: Bool
     @Binding var isTurnActive: Bool
@@ -62,7 +64,7 @@ struct GameButtons: View {
                     
                     
                     Button(action:{
-                        
+                        activeView = nil
                         
                     }){
                         Text("Beenden")
@@ -98,7 +100,8 @@ struct GameButtons: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
                 Button(action:{
-                    dismiss() 
+                   // dismiss()
+                    activeView = nil
                 }){
                     Text("Beenden")
                         .font(.title)

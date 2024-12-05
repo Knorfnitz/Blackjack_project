@@ -10,6 +10,7 @@ import SwiftUI
 
 struct StatsView: View {
     @ObservedObject var gameStats: GameStats
+    @Binding var activeView: String?
     
     var body: some View {
         NavigationStack {  // Um die Navigation zu ermöglichen
@@ -47,6 +48,20 @@ struct StatsView: View {
                     Text("Average Score: \(gameStats.averageScore, specifier: "%.2f")")
                         .font(.title3)
                         .foregroundColor(.white)
+                    
+                    Button(action:{
+                       
+                        activeView = nil
+                    }){
+                        Text("Beenden")
+                            .font(.title)
+                        
+                        
+                    }
+                    .frame(width: 400, height: 75)
+                    .background(.gray)
+                    .foregroundStyle(.white)
+                    .cornerRadius(20)
                     
                     Spacer()  // Damit der Button am unteren Rand erscheint
                     

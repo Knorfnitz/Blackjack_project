@@ -10,6 +10,8 @@ import SwiftData
 
 struct GameView: View {
     
+    @Binding var activeView: String?
+    
     @ObservedObject var playViewVM: PlayerViewVM
    
     @StateObject var gameViewVM: GameViewVM = GameViewVM(repository: CardsRepository())
@@ -33,7 +35,7 @@ struct GameView: View {
             VStack{
                 GameHeader(playViewVM: playViewVM)
                     .frame(height: 80)
-                    .padding()
+                    .padding(.top, 30)
                 Spacer()
             }
             if !gameViewVM.isGameActive{
@@ -48,7 +50,7 @@ struct GameView: View {
                         PlayerTurnButtons(gameViewVM: gameViewVM, dealerCardsValue: $dealerCardsValue, playerCardsValue: $playerCardsValue, youLose: $youLose, youWin: $youWin, youDraw: $youDraw, isTurnActive: $isTurnActive)
                             .padding(.bottom, 100)
                     }else{
-                        GameButtons(playViewVM: playViewVM, gameViewVM: gameViewVM, bet: $bet,  youLose: $youLose, youWin: $youWin, youDraw: $youDraw, playerCardsValue: $playerCardsValue, dealerCardsValue: $dealerCardsValue, animationOpacity: $animationOpacity, animationScale: $animationScale, showBetView: $showBetView, isTurnActive: $isTurnActive)
+                        GameButtons(playViewVM: playViewVM, gameViewVM: gameViewVM, bet: $bet,  youLose: $youLose, youWin: $youWin, youDraw: $youDraw, playerCardsValue: $playerCardsValue, dealerCardsValue: $dealerCardsValue, animationOpacity: $animationOpacity, animationScale: $animationScale, activeView: $activeView, showBetView: $showBetView, isTurnActive: $isTurnActive)
                             .padding(.bottom, 20)
                     }
                 }
@@ -139,6 +141,6 @@ struct GameView: View {
 
     let context = container.mainContext
 
-    GameView(playViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: context)))
+    GameView(activeView: .constant("game"), playViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: context)))
        
 }
