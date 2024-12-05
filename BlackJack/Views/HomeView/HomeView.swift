@@ -6,6 +6,8 @@ struct HomeView: View {
     @State private var activeView: String? = nil
     
     @StateObject private var playerViewVM: PlayerViewVM
+    //@StateObject private var viewModel: RegistrationViewModel
+   // @ObservedObject  var viewModel: RegistrationViewModel
     
     init(context: ModelContext) {
         let repository = PlayerRepository(context: context)
@@ -22,17 +24,18 @@ struct HomeView: View {
             VStack {
                 // Top-Bar mit Spielername und Coins
                 HStack {
-                    Text(playerViewVM.player.name)
+                   
+                    Text(playerViewVM.name)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(BlackjackTheme.textColor)
                         .padding(.leading, 30)
                     
                     Spacer()
                     
-                    Text("\(playerViewVM.player.coins)")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(BlackjackTheme.textColor)
-                        .padding(.trailing, 50)
+//                    Text("\(playerViewVM.player.)")
+//                        .font(.system(size: 20, weight: .bold, design: .rounded))
+//                        .foregroundColor(BlackjackTheme.textColor)
+//                        .padding(.trailing, 50)
                 }
                 .padding(.top,60)
                 .ignoresSafeArea()
@@ -121,11 +124,20 @@ struct HomeView: View {
                 
             }
         }
+        .onAppear(){
+            playerViewVM.mergePlayer()
+        }
         .navigationBarBackButtonHidden(true) // Der Back-Button wird ausgeblendet
                 .navigationBarTitle("Home", displayMode: .inline)
     }
 }
 
-//#Preview {
-//    HomeView(playerViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: <#T##ModelContext#>)))
-//}
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Daten nur im Speicher
+    let container = try! ModelContainer(for: Player.self, configurations: config)
+
+    let context = container.mainContext
+
+    HomeView(context: context)
+        .modelContainer(container)
+}

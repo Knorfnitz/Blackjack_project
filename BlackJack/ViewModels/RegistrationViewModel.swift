@@ -15,7 +15,7 @@ class RegistrationViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var coins: Int = 1000
     @Published var profileImagePath: String? = nil
-    @Published var email: String = ""
+    @AppStorage("email") var email: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
     @Published var errorMessage: String? = nil

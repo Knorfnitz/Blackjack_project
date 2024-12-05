@@ -35,4 +35,11 @@ class PlayerRepository {
             })
             return try? context.fetch(fetchDescriptor).first
         }
+    
+    func findPlayerByMail(email: String) -> Player? {
+            let fetchDescriptor = FetchDescriptor<Player>(predicate: #Predicate { player in
+                player.email == email
+            })
+            return try? context.fetch(fetchDescriptor).first
+        }
 }

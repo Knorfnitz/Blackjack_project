@@ -11,7 +11,7 @@ import SwiftUI
 class LoginViewModel: ObservableObject {
     let playerRepository: PlayerRepository
     
-    @Published var email: String = ""
+    @AppStorage("email") var email: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String? = nil
     @Published var loginSuccess: Bool = false
