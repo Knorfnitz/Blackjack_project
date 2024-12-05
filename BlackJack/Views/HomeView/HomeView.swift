@@ -2,17 +2,17 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-   // @ObservedObject var playerViewVM: PlayerViewVM
+
     @State private var activeView: String? = nil
-    
     @StateObject private var playerViewVM: PlayerViewVM
-    //@StateObject private var viewModel: RegistrationViewModel
-   // @ObservedObject  var viewModel: RegistrationViewModel
+    @ObservedObject var loginViewModel: LoginViewModel
     
-    init(context: ModelContext) {
+    init(context: ModelContext, loginViewModel: LoginViewModel) {
         let repository = PlayerRepository(context: context)
         _playerViewVM = StateObject(wrappedValue: PlayerViewVM(playerRepository: repository))
+        self.loginViewModel = loginViewModel
     }
+   
     
     var body: some View {
         ZStack {
@@ -23,22 +23,26 @@ struct HomeView: View {
             
             VStack {
                 // Top-Bar mit Spielername und Coins
-                HStack {
-                   
-                    Text(playerViewVM.name)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(BlackjackTheme.textColor)
-                        .padding(.leading, 30)
-                    
-                    Spacer()
-                    
-//                    Text("\(playerViewVM.player.)")
+                
+                GameHeader(playViewVM: playerViewVM)
+                    .frame(height: 80)
+                    .padding()
+//                HStack {
+//                   
+//                    Text(playerViewVM.name)
+//                        .font(.system(size: 20, weight: .bold, design: .rounded))
+//                        .foregroundColor(BlackjackTheme.textColor)
+//                        .padding(.leading, 30)
+//                    
+//                    Spacer()
+//                    
+//                    Text("\(playerViewVM.coins)")
 //                        .font(.system(size: 20, weight: .bold, design: .rounded))
 //                        .foregroundColor(BlackjackTheme.textColor)
 //                        .padding(.trailing, 50)
-                }
-                .padding(.top,60)
-                .ignoresSafeArea()
+//                }
+               // .padding(.top,60)
+                //.ignoresSafeArea()
                 Spacer()
             }
             
@@ -106,9 +110,24 @@ struct HomeView: View {
                             .cornerRadius(12)
                             .shadow(radius: 8)
                     }
+                    
+                    Button(action: {
+                        loginViewModel.isLogIn = false
+                }) {
+                    Text("Ausloggen")
+                        .font(.title2.bold())
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(BlackjackTheme.dismiss)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(radius: 8)
+                }
                 }
                 .padding(.horizontal, 30)
                 .padding(.bottom, 40)
+                
+                
             }
             .padding()
             .foregroundColor(BlackjackTheme.textColor)
@@ -117,7 +136,7 @@ struct HomeView: View {
             
             // Zeige die aktive Ansicht basierend auf activeView
             if activeView == "Game" {
-                GameView()
+                GameView(playViewVM: playerViewVM)
             } else if activeView == "Stats" {
                 StatsView(gameStats: GameStats())
             } else if activeView == "Settings" {
@@ -138,6 +157,6 @@ struct HomeView: View {
 
     let context = container.mainContext
 
-    HomeView(context: context)
+    HomeView(context: context, loginViewModel: LoginViewModel(playerRepository: PlayerRepository(context: context)))
         .modelContainer(container)
 }

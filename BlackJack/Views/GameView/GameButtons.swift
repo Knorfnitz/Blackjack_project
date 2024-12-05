@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameButtons: View {
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var playViewVM: PlayerViewVM
+    
     @ObservedObject var gameViewVM: GameViewVM
     @Binding var bet: Int
     @Binding var youLose: Bool
@@ -34,7 +37,7 @@ struct GameButtons: View {
                         youLose = false
                         youWin = false
                         youDraw = false
-                        gameViewVM.player.coins -= bet
+                        playViewVM.coins -= bet
                         gameViewVM.dealerCards = []
                         gameViewVM.playerCards = []
                         playerCardsValue = 0
@@ -95,8 +98,7 @@ struct GameButtons: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
                 Button(action:{
-                    
-                    
+                    dismiss() 
                 }){
                     Text("Beenden")
                         .font(.title)

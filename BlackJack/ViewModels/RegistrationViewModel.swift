@@ -13,13 +13,14 @@ class RegistrationViewModel: ObservableObject {
      let playerRepository: PlayerRepository
     
     @Published var name: String = ""
-    @Published var coins: Int = 1000
+    @AppStorage("coins") var coins: Int = 1000
     @Published var profileImagePath: String? = nil
     @AppStorage("email") var email: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
     @Published var errorMessage: String? = nil
     @Published var registrationSuccess: Bool = false
+    @AppStorage("login") var isLogIn: Bool = true
     
     init(playerRepository: PlayerRepository) {
         self.playerRepository = playerRepository

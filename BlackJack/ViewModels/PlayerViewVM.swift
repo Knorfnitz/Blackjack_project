@@ -16,6 +16,7 @@ class PlayerViewVM: ObservableObject {
     @Published var coins: Int = 1000
     @AppStorage("email") var email: String = ""
     @Published var password: String = "leer"
+    @AppStorage("login") var isLogIn: Bool = true
     
     @Published var playerList: [Player] = [] // Liste für alle Spieler
     
@@ -54,8 +55,9 @@ class PlayerViewVM: ObservableObject {
         print(name)
         
         if let newPlayer = playerRepository.findPlayerByMail(email: email){
-            print(newPlayer.name)
+           
             name = newPlayer.name
+            
         }
     }
 }

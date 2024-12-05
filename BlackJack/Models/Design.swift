@@ -35,6 +35,7 @@ struct BlackjackTheme {
     static let textColor = Color.white
     static let highlightColor = Color.green
     static let highlightColor1 = Color.yellow.opacity(0.8)
+    static let dismiss = Color.red.opacity(0.8)
     static let cardBackColor = Color.gray
 }
 

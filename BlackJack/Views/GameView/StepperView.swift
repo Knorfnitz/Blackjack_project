@@ -12,6 +12,7 @@ struct StepperView: View {
     @State private var customBet: Int = 0
     
     @ObservedObject var gameViewVM: GameViewVM
+    @ObservedObject var playViewVM: PlayerViewVM
     
     @Binding var betAmount: Int
     
@@ -37,7 +38,7 @@ struct StepperView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100)
-                    Button("10") {  betAmount = (betAmount + 10 <= gameViewVM.player.coins) ? betAmount + 10 : gameViewVM.player.coins }
+                    Button("10") {  betAmount = (betAmount + 10 <= playViewVM.coins) ? betAmount + 10 : playViewVM.coins }
                         .padding()
                         .foregroundColor(.white)
                         .cornerRadius(40)
@@ -52,7 +53,7 @@ struct StepperView: View {
                         .frame(width: 100)
                     
                     Button("100") {
-                        betAmount = (betAmount + 100 <= gameViewVM.player.coins) ? betAmount + 100 : gameViewVM.player.coins }
+                        betAmount = (betAmount + 100 <= playViewVM.coins) ? betAmount + 100 : playViewVM.coins }
                         .padding()
                         .foregroundColor(.white)
                         .cornerRadius(40)
@@ -64,7 +65,7 @@ struct StepperView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100)
-                    Button("1K") {  betAmount = (betAmount + 1000 <= gameViewVM.player.coins) ? betAmount + 1000 : gameViewVM.player.coins }
+                    Button("1K") {  betAmount = (betAmount + 1000 <= playViewVM.coins) ? betAmount + 1000 : playViewVM.coins }
                         .padding()
                         .foregroundColor(.white)
                         .cornerRadius(40)
@@ -85,7 +86,7 @@ struct StepperView: View {
                         .scaledToFit()
                         .frame(width: 70)
                     
-                    Button(action: {  betAmount = (betAmount + customBet <= gameViewVM.player.coins) ? betAmount + customBet : gameViewVM.player.coins}) {
+                    Button(action: {  betAmount = (betAmount + customBet <= playViewVM.coins) ? betAmount + customBet : playViewVM.coins}) {
                         Image(systemName: "cross.fill")
                             .font(.title3)
                             .foregroundStyle(.white)
@@ -98,6 +99,6 @@ struct StepperView: View {
     }
 }
 
-#Preview {
-    StepperView(gameViewVM: GameViewVM(repository: CardsRepository()), betAmount: .constant(1000))
-}
+//#Preview {
+//    StepperView(gameViewVM: GameViewVM(repository: CardsRepository()), betAmount: .constant(1000))
+//}

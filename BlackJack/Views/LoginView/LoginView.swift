@@ -8,12 +8,14 @@
 import SwiftUI
 import SwiftData
 
+
+
 struct LoginView: View {
-    @ObservedObject  var viewModel: LoginViewModel
-  
+    @ObservedObject var viewModel: LoginViewModel
+    @State private var isRegistered: Bool = false // Status für Registrierung
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 Text("Login")
                     .font(.largeTitle)
@@ -33,20 +35,28 @@ struct LoginView: View {
 
                 Button("Anmelden") {
                     viewModel.login()
-                    
                 }
                 .buttonStyle(.borderedProminent)
 
-                // NavigationLink zur Registrierung
-                NavigationLink("Noch kein Konto? Registrieren", destination: RegistrationView(context:  viewModel.playerRepository.context))
-                    .font(.footnote)
-                    .padding(.top)
+                // Button zur Registrierung
+                Button("Noch kein Konto? Registrieren") {
+                    isRegistered = true // Navigation auslösen
+                }
+                .font(.footnote)
+                .padding(.top)
 
                 Spacer()
             }
             .padding()
+            
             .alert("Erfolgreich angemeldet!", isPresented: $viewModel.loginSuccess) {
                 Button("OK", role: .cancel) {}
+            }
+            .navigationDestination(isPresented: $isRegistered) {
+                RegistrationView(
+                    context: viewModel.playerRepository.context,
+                    isRegistered: $isRegistered
+                )
             }
         }
     }

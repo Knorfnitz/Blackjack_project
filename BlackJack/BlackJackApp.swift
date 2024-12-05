@@ -32,7 +32,7 @@ struct BlackJackApp: App {
     var body: some Scene {
         WindowGroup {
             if viewModel.isLogIn{
-                HomeView(context: ModelContext(sharedModelContainer))
+                HomeView(context: ModelContext(sharedModelContainer), loginViewModel: viewModel)
             }else{
                 LoginView(viewModel: viewModel)
             }

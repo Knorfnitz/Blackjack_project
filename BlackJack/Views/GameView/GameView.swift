@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GameView: View {
+    
+    @ObservedObject var playViewVM: PlayerViewVM
+   
     @StateObject var gameViewVM: GameViewVM = GameViewVM(repository: CardsRepository())
     @State var bet: Int = 0
     @State var playerCardsValue: Int = 0
@@ -27,14 +31,14 @@ struct GameView: View {
         ZStack {
             GameBackgroundView()
             VStack{
-                GameHeader(gameViewVM: gameViewVM)
+                GameHeader(playViewVM: playViewVM)
                     .frame(height: 80)
                     .padding()
                 Spacer()
             }
             if !gameViewVM.isGameActive{
                 
-                BetView(gameViewVM: gameViewVM, bet: $bet)
+                BetView(gameViewVM: gameViewVM, playViewVM: playViewVM, bet: $bet)
                 
             }else{
                 
@@ -44,7 +48,7 @@ struct GameView: View {
                         PlayerTurnButtons(gameViewVM: gameViewVM, dealerCardsValue: $dealerCardsValue, playerCardsValue: $playerCardsValue, youLose: $youLose, youWin: $youWin, youDraw: $youDraw, isTurnActive: $isTurnActive)
                             .padding(.bottom, 100)
                     }else{
-                        GameButtons(gameViewVM: gameViewVM, bet: $bet,  youLose: $youLose, youWin: $youWin, youDraw: $youDraw, playerCardsValue: $playerCardsValue, dealerCardsValue: $dealerCardsValue, animationOpacity: $animationOpacity, animationScale: $animationScale, showBetView: $showBetView, isTurnActive: $isTurnActive)
+                        GameButtons(playViewVM: playViewVM, gameViewVM: gameViewVM, bet: $bet,  youLose: $youLose, youWin: $youWin, youDraw: $youDraw, playerCardsValue: $playerCardsValue, dealerCardsValue: $dealerCardsValue, animationOpacity: $animationOpacity, animationScale: $animationScale, showBetView: $showBetView, isTurnActive: $isTurnActive)
                             .padding(.bottom, 20)
                     }
                 }
@@ -83,7 +87,7 @@ struct GameView: View {
                             }
                             .task{
                                 let price = bet * 2
-                                gameViewVM.player.coins += price
+                                playViewVM.coins += price
                             }
                     }
                     
@@ -103,7 +107,7 @@ struct GameView: View {
                             }
                             .task{
                                 let price = bet
-                                gameViewVM.player.coins += price
+                                playViewVM.coins += price
                             }
                     }
                     Spacer()
@@ -117,7 +121,7 @@ struct GameView: View {
                         .frame(width: .infinity, height: 400)
                         .opacity(0.6)
                     
-                    StepperView(gameViewVM: gameViewVM, betAmount: $bet)
+                    StepperView(gameViewVM: gameViewVM, playViewVM: playViewVM, betAmount: $bet)
                 }
                     
             }
@@ -130,5 +134,11 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Daten nur im Speicher
+    let container = try! ModelContainer(for: Player.self, configurations: config)
+
+    let context = container.mainContext
+
+    GameView(playViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: context)))
+       
 }

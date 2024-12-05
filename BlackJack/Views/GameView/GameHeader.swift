@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GameHeader: View {
-    @ObservedObject var gameViewVM: GameViewVM
+   // @ObservedObject var gameViewVM: GameViewVM
+    @ObservedObject var playViewVM: PlayerViewVM
+    
     var body: some View {
         HStack{
-            Text(gameViewVM.player.name)
+            Text(playViewVM.name)
                 .font(.title)
                 .foregroundStyle(.white)
             Spacer()
-            Text("\(gameViewVM.player.coins) ₿")
+            Text("\(playViewVM.coins) ₿")
                 .font(.title)
                 .foregroundStyle(.white)
             
@@ -24,5 +27,11 @@ struct GameHeader: View {
 }
 
 #Preview {
-    GameHeader(gameViewVM: GameViewVM(repository: CardsRepository()))
+    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Daten nur im Speicher
+    let container = try! ModelContainer(for: Player.self, configurations: config)
+
+    let context = container.mainContext
+
+    GameHeader(playViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: context)))
+       
 }

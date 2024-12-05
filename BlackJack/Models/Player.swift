@@ -18,6 +18,7 @@ class Player {
     var profileImagePath: String? // Pfad für das Profilbild
     var email: String
     var password: String
+   
 
     // Initialisierer
     init(name: String, coins: Int, profileImagePath: String? = nil, email: String, password: String) {
@@ -26,5 +27,6 @@ class Player {
         self.profileImagePath = profileImagePath
         self.email = email
         self.password = password
+
     }
 }
