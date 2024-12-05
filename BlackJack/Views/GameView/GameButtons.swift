@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameButtons: View {
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var playViewVM: PlayerViewVM
+    
     @ObservedObject var gameViewVM: GameViewVM
     @Binding var bet: Int
     @Binding var youLose: Bool
@@ -17,6 +20,8 @@ struct GameButtons: View {
     @Binding var dealerCardsValue: Int
     @Binding var animationOpacity: Double
     @Binding var animationScale: CGFloat
+    
+    @Binding var activeView: String?
 
     @Binding var showBetView: Bool
     @Binding var isTurnActive: Bool
@@ -34,7 +39,7 @@ struct GameButtons: View {
                         youLose = false
                         youWin = false
                         youDraw = false
-                        gameViewVM.player.coins -= bet
+                        playViewVM.coins -= bet
                         gameViewVM.dealerCards = []
                         gameViewVM.playerCards = []
                         playerCardsValue = 0
@@ -59,7 +64,7 @@ struct GameButtons: View {
                     
                     
                     Button(action:{
-                        
+                        activeView = nil
                         
                     }){
                         Text("Beenden")
@@ -95,8 +100,8 @@ struct GameButtons: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
                 Button(action:{
-                    
-                    
+                   // dismiss()
+                    activeView = nil
                 }){
                     Text("Beenden")
                         .font(.title)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BetView: View {
     @ObservedObject var gameViewVM: GameViewVM
+    @ObservedObject var playViewVM: PlayerViewVM
     
     @Binding var bet: Int
     
@@ -16,11 +17,11 @@ struct BetView: View {
         VStack{
             Spacer()
             
-            StepperView(gameViewVM: gameViewVM, betAmount: $bet)
+            StepperView(gameViewVM: gameViewVM, playViewVM: playViewVM, betAmount: $bet)
             
             Button(action:{
                 
-                gameViewVM.player.coins -= bet
+                playViewVM.coins -= bet
                 gameViewVM.isGameActive = true
                 
                 
@@ -43,6 +44,6 @@ struct BetView: View {
     }
 }
 
-#Preview {
-    BetView(gameViewVM: GameViewVM(repository: CardsRepository()), bet: .constant(0))
-}
+//#Preview {
+//    BetView(gameViewVM: GameViewVM(repository: CardsRepository()), bet: .constant(0))
+//}
