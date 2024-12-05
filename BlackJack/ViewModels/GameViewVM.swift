@@ -7,8 +7,9 @@
 
 import Foundation
 
+@MainActor
 class GameViewVM: ObservableObject {
-    @Published var player = Player(name: "Player 1", gameHistory: [], coins: 1000, email: "", password: "")
+    @Published var player = Player(name: "Player 1", coins: 1000, email: "", password: "")
     @Published var deck: Deck = Deck(success: true, deck_id: "", shuffled: true, remaining: 52)
     @Published var dealerCards: [Card] = []
     @Published var playerCards: [Card] = []

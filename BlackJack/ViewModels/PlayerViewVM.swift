@@ -8,12 +8,24 @@
 import Foundation
 
 class PlayerViewVM: ObservableObject {
-    @Published var player: Player = Player(name: "Player 1", gameHistory: [], coins: 1000, email: "", password: "")
+    
+    let playerRepository: PlayerRepository
+    
+    @Published var player: Player = Player(name: "Player 1", coins: 1000, email: "", password: "")
+    
     @Published var playerList: [Player] = [] // Liste für alle Spieler
+    
+    init(playerRepository: PlayerRepository) {
+        self.playerRepository = playerRepository
+    }
+    
+    func loadPlayer(){
+        //Spieler aus DB fetchen, wo mail = mail(eingeloggtem User)
+    }
     
     func createPlayer(name: String, email: String, password: String) {
         // Eine neue Player-Instanz erstellen und die bestehende `player` ersetzen
-        self.player = Player(name: name, gameHistory: [], coins: 1000, email: email, password: password)
+        self.player = Player(name: name, coins: 1000, email: email, password: password)
     }
     
     func addPlayerToPlayerList() {

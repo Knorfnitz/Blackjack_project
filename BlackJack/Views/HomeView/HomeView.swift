@@ -1,8 +1,16 @@
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
-    @StateObject var playerViewVM: PlayerViewVM
+   // @ObservedObject var playerViewVM: PlayerViewVM
     @State private var activeView: String? = nil
+    
+    @StateObject private var playerViewVM: PlayerViewVM
+    
+    init(context: ModelContext) {
+        let repository = PlayerRepository(context: context)
+        _playerViewVM = StateObject(wrappedValue: PlayerViewVM(playerRepository: repository))
+    }
     
     var body: some View {
         ZStack {
@@ -118,6 +126,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView(playerViewVM: PlayerViewVM())
-}
+//#Preview {
+//    HomeView(playerViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: <#T##ModelContext#>)))
+//}

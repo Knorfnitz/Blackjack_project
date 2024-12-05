@@ -22,6 +22,4 @@ struct ProfilView: View {
     }
 }
 
-#Preview {
-    ProfilView(playerViewVM:PlayerViewVM())
-}
+

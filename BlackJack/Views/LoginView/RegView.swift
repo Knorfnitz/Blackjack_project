@@ -20,6 +20,4 @@ struct RegView: View {
     }
 }
 
-#Preview {
-    RegView(playerListViewVM: PlayerListViewVM(), playerViewVM: PlayerViewVM())
-}
+

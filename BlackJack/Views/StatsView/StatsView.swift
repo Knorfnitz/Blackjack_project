@@ -51,17 +51,17 @@ struct StatsView: View {
                     Spacer()  // Damit der Button am unteren Rand erscheint
                     
                     // Hier verwenden wir einen NavigationLink, um den Benutzer zum HomeView zu navigieren
-                    NavigationLink(destination: HomeView(playerViewVM: PlayerViewVM())) {
-                        Text("Zurück zum Home")
-                            .font(.title2)
-                            .bold()
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.yellow.opacity(0.8))  // Hier kannst du eine benutzerdefinierte goldene Farbe verwenden
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            .padding([.leading, .trailing], 20)
-                    }
+//                    NavigationLink(destination: HomeView(playerViewVM: PlayerViewVM())) {
+//                        Text("Zurück zum Home")
+//                            .font(.title2)
+//                            .bold()
+//                            .padding()
+//                            .frame(maxWidth: .infinity)
+//                            .background(Color.yellow.opacity(0.8))  // Hier kannst du eine benutzerdefinierte goldene Farbe verwenden
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                            .padding([.leading, .trailing], 20)
+//                    }
                 }
                 .padding(.top, -55)
                 .multilineTextAlignment(.center)
