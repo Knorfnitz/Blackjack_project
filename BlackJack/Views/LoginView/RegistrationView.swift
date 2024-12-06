@@ -20,42 +20,54 @@ struct RegistrationView: View {
     }
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text("Registrieren")
-                .font(.largeTitle)
-                .bold()
-
-            TextField("Name", text: $viewModel.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            TextField("E-Mail", text: $viewModel.email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.emailAddress)
-
-            SecureField("Passwort", text: $viewModel.password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            SecureField("Passwort bestätigen", text: $viewModel.confirmPassword)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-            }
-
-            Button("Registrieren") {
-                viewModel.register()
-                if viewModel.registrationSuccess {
-                    isRegistered = false // Navigation zurück zur LoginView
+        ZStack{
+            ScreenBackgroundColor()
+                .ignoresSafeArea()
+            
+            VStack(spacing: 16) {
+                
+                Image("BlackJackRound")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                
+                Text("Spieler-Registrierung") .font(.largeTitle).foregroundStyle(.white)
+                    .bold()
+                
+                TextField("Name", text: $viewModel.name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                TextField("E-Mail", text: $viewModel.email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.emailAddress)
+                
+                SecureField("Passwort", text: $viewModel.password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                SecureField("Passwort bestätigen", text: $viewModel.confirmPassword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
                 }
+                
+                Button("Registrieren") {
+                    viewModel.register()
+                    if viewModel.registrationSuccess {
+                        isRegistered = false // Navigation zurück zur LoginView
+                    }
+                }
+                .buttonStyle(.borderedProminent).fontWeight(.bold)
+                
+                Spacer()
             }
-            .buttonStyle(.borderedProminent)
+            
+            .padding()
+            .alert("Registrierung erfolgreich!", isPresented: $viewModel.registrationSuccess) {
+                Button("OK", role: .cancel) {}
+            }
 
-            Spacer()
-        }
-        .padding()
-        .alert("Registrierung erfolgreich!", isPresented: $viewModel.registrationSuccess) {
-            Button("OK", role: .cancel) {}
         }
     }
 }
