@@ -58,11 +58,11 @@ struct StatsView: View {
                         
                         
                     }
-                    .frame(width: 400, height: 75)
+                    .frame(width: 380, height: 75)
                     .background(.yellow.opacity(0.8))
                     .foregroundStyle(.white)
                     .cornerRadius(20)
-                    
+                    .padding(.bottom, 40)
                     //Spacer()  // Damit der Button am unteren Rand erscheint
                     
                     // Hier verwenden wir einen NavigationLink, um den Benutzer zum HomeView zu navigieren

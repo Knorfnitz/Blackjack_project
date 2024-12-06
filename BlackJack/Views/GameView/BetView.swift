@@ -37,7 +37,7 @@ struct BetView: View {
             }
             
             
-            .disabled(bet <= 1)
+            .disabled(bet < 1)
             
             Spacer()
         }

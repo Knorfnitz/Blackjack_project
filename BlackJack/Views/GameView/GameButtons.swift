@@ -55,8 +55,8 @@ struct GameButtons: View {
                             .font(.title)
                         
                     }
-                    
-                    .frame(width: 200, height: 75)
+                    .disabled(bet < 1)
+                    .frame(width: 180, height: 75)
                     .background(.tableGreen)
                     .foregroundStyle(.white)
                     .cornerRadius(20)
@@ -72,7 +72,7 @@ struct GameButtons: View {
                         
                         
                     }
-                    .frame(width: 200, height: 75)
+                    .frame(width: 180, height: 75)
                     .background(.cardRed)
                     .foregroundStyle(.white)
                     .cornerRadius(20)
@@ -88,14 +88,17 @@ struct GameButtons: View {
                     
                 }
                 
-                .frame(width: 200, height: 75)
+                .frame(width: 250, height: 75)
                 .background(.yellow.opacity(0.8))
                 .foregroundStyle(.white)
                 .cornerRadius(20)
             }
-        }else{
+            
+            .padding(.bottom, 20)
+            .padding(.top, -20)
+        } else {
             VStack{
-                Text ("Spiel beendet! Deck aufgebraucht!")
+                Text ("Deck aufgebraucht!")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
@@ -108,13 +111,13 @@ struct GameButtons: View {
                     
                     
                 }
-                .frame(width: 400, height: 75)
+                .frame(width: 380, height: 75)
                 .background(.red)
                 .foregroundStyle(.white)
                 .cornerRadius(20)
-                .offset(y: -30)
+                //.offset(y: -30)
             }
-            .padding(.top, 20)
+            //.padding(.top, 20)
             .padding(.bottom, 40)
         }
     }

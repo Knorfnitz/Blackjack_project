@@ -36,6 +36,7 @@ struct GameView: View {
                 GameHeader(playViewVM: playViewVM)
                     .frame(height: 80)
                     .padding(.top, 30)
+                    //.padding(.bottom, 10)
                 Spacer()
             }
             if !gameViewVM.isGameActive{
@@ -54,7 +55,7 @@ struct GameView: View {
                             .padding(.bottom, 20)
                     }
                 }
-                .padding(.top, 40)
+                .padding(.top, 30)
             }
             if (youWin || youLose || youDraw) && !showBetView{
                 VStack {
@@ -127,7 +128,7 @@ struct GameView: View {
                             endPoint: .bottom
                         ))
                         .foregroundStyle(.white)
-                        .frame(width: .infinity, height: 400)
+                        .frame(width: 380, height: 400)
                         .cornerRadius(25)
                     
                     StepperView(gameViewVM: gameViewVM, playViewVM: playViewVM, betAmount: $bet)
