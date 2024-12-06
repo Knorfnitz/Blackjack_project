@@ -42,7 +42,7 @@ struct PlayerTurnButtons: View {
             }
             //.buttonStyle(.borderedProminent)
             .frame(width: 200, height: 75)
-            .background(.gray)
+            .background(.tableGreen)
             .foregroundStyle(.white)
             .cornerRadius(20)
             
@@ -81,7 +81,7 @@ struct PlayerTurnButtons: View {
                 
             }
             .frame(width: 200, height: 75)
-            .background(.gray)
+            .background(.cardRed)
             .foregroundStyle(.white)
             .cornerRadius(20)
         }

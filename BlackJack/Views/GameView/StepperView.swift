@@ -22,11 +22,12 @@ struct StepperView: View {
                 Text("Einsatz: \(betAmount) ₿")
                     .font(.title)
                     .fontWeight(.bold)
+                    .foregroundStyle(Color.white)
                 Spacer()
                 Button(action: { betAmount = 0}) {
                     Image(systemName: "minus.circle")
                         .font(.title)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .fontWeight(.heavy)
                 }
             }.padding(.horizontal, 40)

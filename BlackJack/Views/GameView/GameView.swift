@@ -13,7 +13,7 @@ struct GameView: View {
     @Binding var activeView: String?
     
     @ObservedObject var playViewVM: PlayerViewVM
-   
+    
     @StateObject var gameViewVM: GameViewVM = GameViewVM(repository: CardsRepository())
     @State var bet: Int = 0
     @State var playerCardsValue: Int = 0
@@ -60,7 +60,7 @@ struct GameView: View {
                 VStack {
                     Spacer()
                     if youLose{
-                        Text("Du hast verloren")
+                        Text("Verloren")
                             .font(.system(size: 60, weight: .bold))
                             .foregroundColor(.yellow)
                             .shadow(color: .red, radius: 10, x: 0, y: 0)
@@ -75,7 +75,7 @@ struct GameView: View {
                     }
                     
                     if youWin{
-                        Text("Du hast gewonnen")
+                        Text("Gewonnen")
                             .font(.system(size: 60, weight: .bold))
                             .foregroundColor(.yellow)
                             .shadow(color: .red, radius: 10, x: 0, y: 0)
@@ -96,7 +96,7 @@ struct GameView: View {
                     if youDraw{
                         
                         Text("Unentschieden")
-                            .font(.system(size: 60, weight: .bold))
+                            .font(.system(size: 50, weight: .bold))
                             .foregroundColor(.yellow)
                             .shadow(color: .red, radius: 10, x: 0, y: 0)
                             .opacity(animationOpacity)
@@ -115,17 +115,24 @@ struct GameView: View {
                     Spacer()
                     
                 }
-                }
+            }
             if showBetView{
                 ZStack {
+                    
                     Rectangle()
+                    
+                        .fill(LinearGradient(
+                            gradient: Gradient(colors: [Color.green.opacity(0.8), Color.black]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ))
                         .foregroundStyle(.white)
                         .frame(width: .infinity, height: 400)
-                        .opacity(0.6)
+                        .cornerRadius(25)
                     
                     StepperView(gameViewVM: gameViewVM, playViewVM: playViewVM, betAmount: $bet)
                 }
-                    
+                //.background(Color.tableGreen)
             }
         }
         .task {
@@ -138,9 +145,9 @@ struct GameView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true) // Daten nur im Speicher
     let container = try! ModelContainer(for: Player.self, configurations: config)
-
+    
     let context = container.mainContext
-
+    
     GameView(activeView: .constant("game"), playViewVM: PlayerViewVM(playerRepository: PlayerRepository(context: context)))
-       
+    
 }
