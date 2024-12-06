@@ -10,24 +10,45 @@ import SwiftUI
 struct SettingsView: View {
     @Binding var activeView: String?
     var body: some View {
-        Text("Darkmode")
-        Text("Kartendecks Anzahl")
-      //  Text("Kartencover")
-        Text("Deck verhalten")
-        
-        Button(action:{
-           
-            activeView = nil
-        }){
-            Text("Beenden")
-                .font(.title)
-            
-            
+        // TODO: determin values to be addressed
+        // Text("Kartencover")
+        // Text("Deck verhalten")
+        // Text("Einsatzbegrenzung")
+        // Text("Verlustbegrenzung")
+        ZStack {
+            ScreenBackgroundColor()
+                .ignoresSafeArea()
+            VStack {
+                Spacer()
+                HStack {
+                    Image(systemName: "gear.circle")
+                    Text("Game Settings")
+                    Image(systemName: "gear.circle")
+                }
+                .font(.largeTitle)
+                .foregroundStyle(.white)
+                HStack {
+                    Image(systemName: "exclamationmark.triangle")
+                    Text("UNDER CONSTRUCTION")
+                    Image(systemName: "exclamationmark.triangle")
+                }
+                //}
+                .foregroundStyle(.white)
+                //}
+                Spacer()
+                Button(action:{
+                    activeView = nil
+                }){
+                    Text("Beenden")
+                        .font(.title)
+                }
+                .frame(width: 280, height: 60)
+                .background(.gray)
+                .foregroundStyle(.white)
+                .cornerRadius(20)
+                .padding()
+            }
         }
-        .frame(width: 400, height: 75)
-        .background(.gray)
-        .foregroundStyle(.white)
-        .cornerRadius(20)
     }
 }
 
