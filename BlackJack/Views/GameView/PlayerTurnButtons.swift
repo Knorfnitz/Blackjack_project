@@ -41,7 +41,7 @@ struct PlayerTurnButtons: View {
                 
             }
             //.buttonStyle(.borderedProminent)
-            .frame(width: 200, height: 75)
+            .frame(width: 180, height: 75)
             .background(.tableGreen)
             .foregroundStyle(.white)
             .cornerRadius(20)
@@ -50,7 +50,7 @@ struct PlayerTurnButtons: View {
             
             Button(action:{
                 Task {
-                    while dealerCardsValue < 16 {
+                    while dealerCardsValue <= 16 || dealerCardsValue < playerCardsValue  {
                         await gameViewVM.drawCardFromDeck(deckid: gameViewVM.deck.deck_id, amountOfDrawingCards: 1)
                         let newCard: Card = gameViewVM.draw.cards.first!
                         gameViewVM.dealerCards.append(newCard)
@@ -80,7 +80,7 @@ struct PlayerTurnButtons: View {
                 
                 
             }
-            .frame(width: 200, height: 75)
+            .frame(width: 180, height: 75)
             .background(.cardRed)
             .foregroundStyle(.white)
             .cornerRadius(20)

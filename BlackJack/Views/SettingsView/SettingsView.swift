@@ -43,10 +43,10 @@ struct SettingsView: View {
                         .font(.title)
                 }
                 .frame(width: 280, height: 60)
-                .background(.gray)
+                .background(.yellow.opacity(0.8))
                 .foregroundStyle(.white)
                 .cornerRadius(20)
-                .padding()
+                .padding(.bottom, 40)
             }
         }
     }
