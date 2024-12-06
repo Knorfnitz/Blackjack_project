@@ -57,7 +57,7 @@ struct GameButtons: View {
                     }
                     
                     .frame(width: 200, height: 75)
-                    .background(.gray)
+                    .background(.tableGreen)
                     .foregroundStyle(.white)
                     .cornerRadius(20)
                     
@@ -73,7 +73,7 @@ struct GameButtons: View {
                         
                     }
                     .frame(width: 200, height: 75)
-                    .background(.gray)
+                    .background(.cardRed)
                     .foregroundStyle(.white)
                     .cornerRadius(20)
                 }
@@ -89,7 +89,7 @@ struct GameButtons: View {
                 }
                 
                 .frame(width: 200, height: 75)
-                .background(.gray)
+                .background(.yellow.opacity(0.8))
                 .foregroundStyle(.white)
                 .cornerRadius(20)
             }
@@ -109,9 +109,10 @@ struct GameButtons: View {
                     
                 }
                 .frame(width: 400, height: 75)
-                .background(.gray)
+                .background(.red)
                 .foregroundStyle(.white)
                 .cornerRadius(20)
+                .offset(y: -30)
             }
             .padding(.top, 20)
             .padding(.bottom, 40)

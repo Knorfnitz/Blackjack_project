@@ -49,6 +49,7 @@ struct GameRoundView: View {
             Text("\(dealerCardsValue)")
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundColor(.white)
                 .padding(.bottom, 30)
             
             
@@ -100,6 +101,7 @@ struct GameRoundView: View {
             Text("\(playerCardsValue)")
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundColor(.black)
             
             if !youLose {
 

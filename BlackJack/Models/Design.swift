@@ -40,6 +40,7 @@ struct BlackjackTheme {
 }
 
 
+
 struct ScreenBackgroundColor: View {
     var body: some View {
         LinearGradient(
